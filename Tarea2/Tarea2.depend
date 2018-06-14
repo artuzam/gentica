@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1529016603 source:c:\users\b37709\desktop\tarea2\main.cpp
+	<iostream>
+	"Arboles.h"
+	<vector>
+	<iterator>
+
+1529015493 c:\users\b37709\desktop\tarea2\include\arboles.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<vector>
+	<iterator>
+	<fstream>
+	<iostream>
+	<string>
+
+1529016635 source:c:\users\b37709\desktop\tarea2\src\arboles.cpp
+	"Arboles.h"
+	<vector>
+	<stdio.h>
+	<iostream>
+
