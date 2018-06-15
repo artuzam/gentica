@@ -19,6 +19,7 @@ class Arboles
         virtual ~Arboles();
         vector<string> crearArbol(int maxDepth);
 		int randomPos(int largo);
+		bool esOper(string s);
 
     protected:
 

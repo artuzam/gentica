@@ -2,6 +2,8 @@
 #include <vector>
 #include <stdio.h>
 #include <iostream>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>
 
 using namespace std;
 
@@ -17,13 +19,20 @@ Arboles::~Arboles()
 
 vector<string> Arboles::crearArbol(int maxDepth){
 
+	srand (time(NULL));
+
 	vector <string>::iterator it;
 	//vector <string>::iterator it2;
 
-	vector <string>oper;
-	vector <string>term;
-	vector <string>var;
+	vector <string>oper; //vector de operadores
+	vector <string>term; //vector de constantes
+	vector <string>var;  //vector de variables
 
+    vector <string>arbol(31);
+
+    string::size_type sz;  //alias de size_type, necesaria para el casting
+
+	//se llenan con lo que necesita cada uno en formato string para que todos puedan estar en el mismo vector
 	oper.push_back("+");
     oper.push_back("-");
     oper.push_back("/");
@@ -67,27 +76,73 @@ vector<string> Arboles::crearArbol(int maxDepth){
     var.push_back("11");
     var.push_back("12");
 
+    //llenar Arbol de Strings vacíos
+    fill(arbol.begin(), arbol.end(), "0");
+
+    //IMPRESIÓN
+    arbol.at(0) = "x";
+    arbol.at(1) = "1";
+    arbol.at(2) = "1";
+
+    cout<<arbol.size()<<endl;
+
+    cout<<"Empieza: "<<endl;
+
+    for (unsigned i=0; i<arbol.size(); i++){
+        int pos;
+        if(arbol.at(i) == "0"){
+            break;
+        }
+        else if(arbol.at(i) == "x"){
+            // cout<<"Se mete"<<endl;
+            pos = randomPos(oper.size());
+            arbol.at(i) = oper.at(pos);
+        }
+        else{
+            int varonum = randomPos(2);
+            if (varonum == 0){
+                pos = randomPos(term.size());
+                arbol.at(i) = term.at(pos);
+            }
+            else{
+                pos = randomPos(var.size());
+                arbol.at(i) = var.at(pos);
+            }
+        }
+    }
 
 
-	for(it = oper.begin(); it != oper.end(); it++){
+
+    for(it = arbol.begin(); it != arbol.end(); it++){
         cout << *it << endl;
 	}
+    /*
 
 
-	for(it = term.begin(); it != term.end(); it++){
-        cout << *it << endl;
-	}
+    */
 
+	return arbol;
 
-	return oper;
 }
 
 int Arboles::randomPos(int largo){
-	srand (time(NULL));
+
 	int indice = rand() % largo;
-	cout << indice;
+	cout << "indice:"<<indice<<endl;
 	return indice;
 
+}
+
+// para ver si un elemento del vector es operador u operando. Sirve para resolver
+bool Arboles::esOper(string s){
+    bool es;
+    if (s == "+" || s == "-" || s == "*" || s == "/"){
+        es = true;
+    }
+    else{
+        es = false;
+    }
+    return es;
 }
 
 
