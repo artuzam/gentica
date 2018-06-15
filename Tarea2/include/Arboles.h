@@ -9,6 +9,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class Arboles
         vector<string> crearArbol(int maxDepth);
 		int randomPos(int largo);
 		bool esOper(string s);
+		vector<string> insertarPos(vector<string>& original, int posicion, string insertado);
 
     protected:
 
