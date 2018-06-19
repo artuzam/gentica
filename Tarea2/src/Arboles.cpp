@@ -90,19 +90,20 @@ vector<string> Arboles::crearArbol(int maxDepth){
     for (unsigned i=0; i<arbol.size(); i++){
         int pos;
         int prof = 1;
-        if(arbol.at(i) == "0"){
+        if(arbol.at(i) == "0"){     // condición de parada
             break;
         }
-        else if(arbol.at(i) == "x"){
+        else if(arbol.at(i) == "x"){    // si encuentra una X la cambia por un operador
             pos = randomPos(oper.size());
             arbol.at(i) = oper.at(pos);
         }
         else{
-            int hojaOx = randomPos(2);
-            if(hojaOx == 0 && prof <= maxDepth){
+            int hojaOx = randomPos(2);  //si encuentra un número decide si es una hoja o una X
+            if(hojaOx == 0 && prof < maxDepth){ //solo puede ser X si el arbol no va más profundo de lo que debe ser
                 string aux = arbol.at(i);
                 double num = atof (aux.c_str());
                 num ++;
+                prof ++;
                 std::ostringstream os;
                 os << num;
                 std::string str = os.str();
@@ -122,6 +123,10 @@ vector<string> Arboles::crearArbol(int maxDepth){
                 }
             }
         }
+        for(it = arbol.begin(); it != arbol.end(); it++){
+            cout << *it << " ";
+        }
+        cout<<endl;
     }
 
     //arbol = insertarPos(arbol, 1, "420");
