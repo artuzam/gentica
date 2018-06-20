@@ -7,12 +7,11 @@ using namespace std;
 
 int main()
 {
-
     Arboles * objeto = new Arboles();
 	vector<string> papa= objeto->crearArbol(5);
 	//int prueba = objeto->randomPos(24);
-	bool prueba = objeto->esOper("+");
-	cout<<prueba;
+	//bool prueba = objeto->esOper("+");
+	cout<<papa.size();
 
 	/*
 	vector <int> prueba;

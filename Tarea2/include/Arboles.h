@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <stack>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ class Arboles
 		int randomPos(int largo);
 		bool esOper(string s);
 		vector<string> insertarPos(vector<string>& original, int posicion, string insertado);
+		double solucionar(vector<string>& entrada);
 
     protected:
 

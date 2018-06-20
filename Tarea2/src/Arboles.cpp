@@ -85,11 +85,12 @@ vector<string> Arboles::crearArbol(int maxDepth){
         cout << *it << " ";
 	}
 	cout<<endl;
-    //cout<<arbol.size()<<endl;
+    cout<<"Max Depth: " << maxDepth <<endl;
+
+    int prof = 1;
 
     for (unsigned i=0; i<arbol.size(); i++){
         int pos;
-        int prof = 1;
         if(arbol.at(i) == "0"){     // condición de parada
             break;
         }
@@ -99,11 +100,14 @@ vector<string> Arboles::crearArbol(int maxDepth){
         }
         else{
             int hojaOx = randomPos(2);  //si encuentra un número decide si es una hoja o una X
+            cout<<"Profundidad: " << prof <<endl;
             if(hojaOx == 0 && prof < maxDepth){ //solo puede ser X si el arbol no va más profundo de lo que debe ser
                 string aux = arbol.at(i);
                 double num = atof (aux.c_str());
                 num ++;
-                prof ++;
+                cout<<"NUM: " << num <<endl;
+                prof = num;
+                cout<<"Profundidad: " << prof <<endl;
                 std::ostringstream os;
                 os << num;
                 std::string str = os.str();
@@ -132,9 +136,7 @@ vector<string> Arboles::crearArbol(int maxDepth){
     //arbol = insertarPos(arbol, 1, "420");
 
     //IMPRESIÓN
-    for(it = arbol.begin(); it != arbol.end(); it++){
-        cout << *it << " ";
-	}
+    //cout<<arbol.size();
 
 	return arbol;
 }
@@ -174,5 +176,44 @@ bool Arboles::esOper(string s){
     }
     return es;
 }
+
+/*
+double Arboles::solucionar(vector<string>& entrada){
+    stack <double> solve;
+    int pos;
+    double res;
+
+    // encontrar la primera posición ocupada
+    for (pos = entrada.size(); pos >= 0; pos--){
+        if(entrada.at(pos) != "0"){
+            break;
+        }
+    }
+
+    // solucionar
+    for(int i = pos; i >= 0; pos--){
+        if(!esOper(entrada.at(i))){
+            string aux = entrada.at(i);
+            solve.push(atof (aux.c_str()));
+        }
+        else{
+            double a = solve.pop();
+            double b = solve.pop();
+            string oper = entrada.at(i);
+            switch(oper){
+                case "+": solve.push(a+b);
+                case "*": solve.push(a*b);
+                case "-": solve.push(a-b);
+                case "/": solve.push(a/b);
+            }
+        }
+    }
+
+    res = solve.pop();
+    return res;
+}
+*/
+
+
 
 
