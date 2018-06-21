@@ -177,7 +177,7 @@ bool Arboles::esOper(string s){
     return es;
 }
 
-/*
+
 double Arboles::solucionar(vector<string>& entrada){
     stack <double> solve;
     int pos;
@@ -197,22 +197,30 @@ double Arboles::solucionar(vector<string>& entrada){
             solve.push(atof (aux.c_str()));
         }
         else{
-            double a = solve.pop();
-            double b = solve.pop();
+            double a = solve.top();
+            double b = solve.top();
+            solve.pop();
+            solve.pop();
             string oper = entrada.at(i);
-            switch(oper){
-                case "+": solve.push(a+b);
-                case "*": solve.push(a*b);
-                case "-": solve.push(a-b);
-                case "/": solve.push(a/b);
+            if (oper == "+"){
+                solve.push(a+b);
+            }
+            else if(oper == "*"){
+                solve.push(a*b);
+            }
+            else if(oper == "-"){
+                solve.push(a-b);
+            }
+            else if(oper == "/"){
+                solve.push(a/b);
             }
         }
     }
 
-    res = solve.pop();
+    res = solve.top();
     return res;
 }
-*/
+
 
 
 

@@ -8,10 +8,17 @@ using namespace std;
 int main()
 {
     Arboles * objeto = new Arboles();
-	vector<string> papa= objeto->crearArbol(5);
+	//vector<string> papa= objeto->crearArbol(5);
 	//int prueba = objeto->randomPos(24);
 	//bool prueba = objeto->esOper("+");
 	cout<<papa.size();
+
+    vector<string> prueba;
+    prueba.push_back("+");
+    prueba.push_back("2");
+    prueba.push_back("2");
+    double res = objeto->solucionar(prueba);
+    cout<<res;
 
 	/*
 	vector <int> prueba;
