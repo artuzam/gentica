@@ -2,6 +2,11 @@
 #include "Arboles.h"
 #include <vector>
 #include <iterator>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <algorithm>
+
 
 using namespace std;
 
@@ -19,6 +24,34 @@ int main()
     prueba.push_back("2");
     double res = objeto->solucionar(prueba);
     cout<<res;
+
+
+    //aqui emieza la lectura del archivo de datos wine y su impresion de la matriz de doubles
+
+    ifstream in("wine.txt");
+    string bufferFila;
+    vector < vector<double> > matrix;
+
+    while (getline(in, bufferFila)) {
+        if(bufferFila.size() > 0) {
+            stringstream ss(bufferFila);
+            string bufferNumero;
+            vector<double> row;
+
+            while(getline(ss, bufferNumero, ',')) {
+                row.push_back(atof(bufferNumero.c_str()));
+            }
+            matrix.push_back(row);
+        }
+    }
+
+    for(int i = 0; i < matrix.size(); i++) {
+        for(int j = 0; j < matrix[i].size(); j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
 
 	/*
 	vector <int> prueba;
