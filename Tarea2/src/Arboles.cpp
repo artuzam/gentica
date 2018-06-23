@@ -5,31 +5,7 @@ using namespace std;
 
 Arboles::Arboles()
 {
-    //ctor
-}
-
-Arboles::~Arboles()
-{
-    //dtor
-}
-
-// crea un árbol en notación prefija (vector) con altura maxDepth
-vector<string> Arboles::crearArbol(int maxDepth){
-
-	srand (time(NULL));
-    string::size_type sz;  //alias de size_type, necesaria para el casting
-	vector <string>::iterator it;
-	//vector <string>::iterator it2;
-
-	vector <string>oper; //vector de operadores
-	vector <string>term; //vector de constantes
-	vector <string>var;  //vector de variables
-
-    vector <string>arbol(31);
-
-	//se llenan con lo que necesita cada uno en formato string para que todos puedan estar en el mismo vector
-	// operadores
-	oper.push_back("+");
+    oper.push_back("+");
     oper.push_back("-");
     oper.push_back("/");
     oper.push_back("*");
@@ -73,6 +49,25 @@ vector<string> Arboles::crearArbol(int maxDepth){
     var.push_back("v10");
     var.push_back("v11");
     var.push_back("v12");
+}
+
+Arboles::~Arboles()
+{
+    //dtor
+}
+
+// crea un árbol en notación prefija (vector) con altura maxDepth
+vector<string> Arboles::crearArbol(int maxDepth){
+
+	srand (time(NULL));
+    string::size_type sz;  //alias de size_type, necesaria para el casting
+	vector <string>::iterator it;
+
+    vector <string>arbol(31);
+
+	//se llenan con lo que necesita cada uno en formato string para que todos puedan estar en el mismo vector
+	// operadores
+
 
     //llenar Arbol de Strings vacíos
     fill(arbol.begin(), arbol.end(), "0");
@@ -183,23 +178,27 @@ double Arboles::solucionar(vector<string>& entrada){
     int pos;
     double res;
 
-    // encontrar la primera posición ocupada
-    for (pos = entrada.size(); pos >= 0; pos--){
-        if(entrada.at(pos) != "0"){
-            break;
+    // encontrar la primera posición ocupada, se guarda en pos
+    pos = entrada.size()-1;
+    bool encontrado = false;
+    while(pos >= 0 && encontrado == false){
+        if (entrada.at(pos) != "0")
+            encontrado = true;
+        else{
+            pos--;
         }
     }
 
     // solucionar
-    for(int i = pos; i >= 0; pos--){
+    for(int i = pos; i >= 0; i--){
         if(!esOper(entrada.at(i))){
             string aux = entrada.at(i);
             solve.push(atof (aux.c_str()));
         }
         else{
             double a = solve.top();
-            double b = solve.top();
             solve.pop();
+            double b = solve.top();
             solve.pop();
             string oper = entrada.at(i);
             if (oper == "+"){
@@ -216,9 +215,58 @@ double Arboles::solucionar(vector<string>& entrada){
             }
         }
     }
-
     res = solve.top();
     return res;
+}
+
+/* método que devuelve un sub-árbol a partir de una posición pos
+   este método no revisa si pos es 0. Eso se tiene que revisar antes de llamarlo
+   NO puede ser 0 porque en ese caso el sub-arbol sería el árbol completo
+*/
+vector<string> Arboles::subArbol(vector<string>& original, int pos){
+    vector<string> subArbol;
+    bool op = false;
+    while (!op){
+        if (esOper(original.at(pos)))
+            op = true;
+        else
+            pos--;
+    }
+
+    int cont = 1;
+    while (cont > 0){
+            if(esOper(original.at(pos))){
+                subArbol.push_back(original.at(pos));
+                cont++;
+            }
+            else{
+                subArbol.push_back(original.at(pos));
+                cont--;
+            }
+            pos++;
+    }
+    return subArbol;
+}
+
+vector<string> Arboles::mutar(vector<string>& original){
+    string nueva;
+    int pos = 3;//randomPos(original.size());
+        if(esOper(original.at(pos))){
+            nueva = oper.at(randomPos(oper.size()));
+            original.at(pos) = nueva;
+        }
+        else{
+            int varonum = randomPos(2);
+                if (varonum == 0){
+                    nueva = term.at(randomPos(term.size()));
+                    original.at(pos) = nueva;
+                }
+                else{
+                    nueva = var.at(randomPos(var.size()));
+                    original.at(pos) = nueva;
+                }
+        }
+    return original;
 }
 
 

@@ -13,21 +13,43 @@ using namespace std;
 int main()
 {
     Arboles * objeto = new Arboles();
-	//vector<string> papa= objeto->crearArbol(5);
-	//int prueba = objeto->randomPos(24);
-	//bool prueba = objeto->esOper("+");
-	cout<<papa.size();
+	//vector<string> prueba= objeto->crearArbol(5);
+	//cout<<prueba.size();
 
+    //pruebas de subArbol y solucionar
     vector<string> prueba;
-    prueba.push_back("+");
+    prueba.push_back("/");
     prueba.push_back("2");
+    prueba.push_back("*");
+    prueba.push_back("6");
     prueba.push_back("2");
-    double res = objeto->solucionar(prueba);
-    cout<<res;
+    prueba.push_back("0");
+    prueba.push_back("0");
+    prueba.push_back("0");
+    prueba.push_back("0");
 
+    for (unsigned i = 0; i < prueba.size(); i++){
+        cout<<prueba.at(i);
+    }
+    cout<<endl;
+
+    double res = objeto->solucionar(prueba);
+    cout<<"Resultado:"<<res<<endl;
+
+    vector<string> sub = objeto->subArbol(prueba, 3);
+    for (unsigned i = 0; i < sub.size(); i++){
+        cout<<sub.at(i);
+    }
+    cout<<endl;
+
+    prueba = objeto->mutar(prueba);
+    for (unsigned i = 0; i < prueba.size(); i++){
+        cout<<prueba.at(i);
+    }
+    cout<<endl;
 
     //aqui emieza la lectura del archivo de datos wine y su impresion de la matriz de doubles
-
+    /*
     ifstream in("wine.txt");
     string bufferFila;
     vector < vector<double> > matrix;
@@ -51,30 +73,6 @@ int main()
         }
         cout << endl;
     }
-
-
-	/*
-	vector <int> prueba;
-	prueba.push_back(1);
-	prueba.push_back(2);
-	prueba.push_back(3);
-	prueba.push_back(5);
-
-	vector <int>::iterator it;
-
-	for(it = prueba.begin(); it != prueba.end(); it++){
-        cout << *it << endl;
-	}
-
-	it = prueba.begin();
-	it += 3;
-    prueba.insert(it, 4);
-
-    for(it = prueba.begin(); it != prueba.end(); it++){
-        cout << *it << endl;
-	}
     */
-
-
     return 0;
 }
