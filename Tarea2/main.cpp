@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
+#include <map>
 
 
 using namespace std;
@@ -14,19 +15,38 @@ int main()
 {
      Arboles * objeto = new Arboles();
 
-    vector < vector<double> > temp = objeto->leer();
+    //lee el archivo wine.txt y regresa vector
+    vector < vector<string> > temp = objeto->leer();
+    vector<string> prueba = objeto->crearArbol(5);
 
-        
+    vector<string> subs = objeto->sustitucionVar(0, prueba, temp);
+
+     cout << "Sustituimos los var" << endl;
+
+    for(int i = 0; i < subs.size(); i++){
+        cout << subs.at(i) << " ";
+    }
+
+
+/**
+
+    //imprime matriz para ver si se metieron bien los valores
       for(int i = 0; i < temp.size(); i++) {
         for(int j = 0; j < temp[i].size(); j++) {
             cout << temp[i][j] << " ";
         }
         cout << endl;
     }
-    /*
-    Arboles * objeto = new Arboles();
+**/
+
+
     //vector<string> prueba= objeto->crearArbol(5);
     //cout<<prueba.size();
+
+
+
+
+    /*
 
     //pruebas de subArbol y solucionar
     vector<string> prueba;
@@ -60,31 +80,6 @@ int main()
     }
     cout<<endl;
 
-    //aqui emieza la lectura del archivo de datos wine y su impresion de la matriz de doubles
-
-    ifstream in("wine.txt");
-    string bufferFila;
-    vector < vector<double> > matrix;
-
-    while (getline(in, bufferFila)) {
-        if(bufferFila.size() > 0) {
-            stringstream ss(bufferFila);
-            string bufferNumero;
-            vector<double> row;
-
-            while(getline(ss, bufferNumero, ',')) {
-                row.push_back(atof(bufferNumero.c_str()));
-            }
-            matrix.push_back(row);
-        }
-    }
-
-    for(int i = 0; i < matrix.size(); i++) {
-        for(int j = 0; j < matrix[i].size(); j++) {
-            cout << matrix[i][j] << " ";
-        }
-        cout << endl;
-    }
 **/
     return 0;
 }

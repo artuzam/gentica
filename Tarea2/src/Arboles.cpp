@@ -270,20 +270,20 @@ vector<string> Arboles::mutar(vector<string>& original){
 }
 
 
-vector < vector<double> > Arboles::leer(){
+vector < vector<string> > Arboles::leer(){
 
     ifstream in("wine.txt");
     string bufferFila;
-    vector < vector<double> > matrix;
+    vector < vector<string> > matrix;
 
     while (getline(in, bufferFila)) {
         if(bufferFila.size() > 0) {
             stringstream ss(bufferFila);
             string bufferNumero;
-            vector<double> row;
+            vector<string> row;
 
             while(getline(ss, bufferNumero, ',')) {
-                row.push_back(atof(bufferNumero.c_str()));
+                row.push_back(bufferNumero.c_str());
             }
             matrix.push_back(row);
         }
@@ -298,6 +298,60 @@ vector < vector<double> > Arboles::leer(){
 **/
     return matrix;
 }
+
+
+
+vector<string> Arboles::sustitucionVar(int fila, vector<string>& arbol, vector < vector<string> >& datos ){
+    int columnas = 12;
+    string str;
+
+     for(int i = 0; i < arbol.size(); i++){
+
+        str = arbol.at(i);
+
+        if(str == "v1")
+            arbol.at(i) = datos[fila][0];
+        else
+            if(str == "v2")
+            arbol.at(i) = datos[fila][1];
+        else
+            if(str == "v3")
+            arbol.at(i) = datos[fila][2];
+        else
+            if(str == "v4")
+            arbol.at(i) = datos[fila][3];
+        else
+            if(str == "v5")
+            arbol.at(i) = datos[fila][4];
+        else
+            if(str == "v6")
+            arbol.at(i) = datos[fila][5];
+        else
+            if(str == "v7")
+            arbol.at(i) = datos[fila][6];
+        else
+            if(str == "v8")
+            arbol.at(i) = datos[fila][7];
+        else
+            if(str == "v9")
+            arbol.at(i) = datos[fila][8];
+        else
+            if(str == "v10")
+            arbol.at(i) = datos[fila][9];
+        else
+            if(str == "v11")
+            arbol.at(i) = datos[fila][10];
+        else
+            if(str == "v12")
+            arbol.at(i) = datos[fila][11];
+
+    } //fin del for
+
+ return arbol;
+}
+
+
+
 
 
 

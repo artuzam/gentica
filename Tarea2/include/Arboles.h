@@ -12,6 +12,7 @@
 #include <sstream>
 #include <stack>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -30,7 +31,9 @@ class Arboles
         double solucionar(vector<string>& entrada);
         vector<string> subArbol(vector<string>& original, int pos);
         vector<string> mutar(vector<string>& original);
-        vector < vector<double> > leer();  //lee archivo y devuelve matriz
+        vector < vector<string> > leer();  //lee archivo y devuelve matriz
+        vector<string> sustitucionVar(int fila, vector<string>& arbol, vector<vector<string> >& datos); //sustituye los Var por los valores que se leen
+
 
 
     protected:
