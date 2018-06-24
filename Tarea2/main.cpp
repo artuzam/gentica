@@ -12,9 +12,21 @@ using namespace std;
 
 int main()
 {
+     Arboles * objeto = new Arboles();
+
+    vector < vector<double> > temp = objeto->leer();
+
+        
+      for(int i = 0; i < temp.size(); i++) {
+        for(int j = 0; j < temp[i].size(); j++) {
+            cout << temp[i][j] << " ";
+        }
+        cout << endl;
+    }
+    /*
     Arboles * objeto = new Arboles();
-	//vector<string> prueba= objeto->crearArbol(5);
-	//cout<<prueba.size();
+    //vector<string> prueba= objeto->crearArbol(5);
+    //cout<<prueba.size();
 
     //pruebas de subArbol y solucionar
     vector<string> prueba;
@@ -49,7 +61,7 @@ int main()
     cout<<endl;
 
     //aqui emieza la lectura del archivo de datos wine y su impresion de la matriz de doubles
-    /*
+
     ifstream in("wine.txt");
     string bufferFila;
     vector < vector<double> > matrix;
@@ -73,6 +85,7 @@ int main()
         }
         cout << endl;
     }
-    */
+**/
     return 0;
 }
+

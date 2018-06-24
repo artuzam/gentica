@@ -59,14 +59,14 @@ Arboles::~Arboles()
 // crea un árbol en notación prefija (vector) con altura maxDepth
 vector<string> Arboles::crearArbol(int maxDepth){
 
-	srand (time(NULL));
+    srand (time(NULL));
     string::size_type sz;  //alias de size_type, necesaria para el casting
-	vector <string>::iterator it;
+    vector <string>::iterator it;
 
     vector <string>arbol(31);
 
-	//se llenan con lo que necesita cada uno en formato string para que todos puedan estar en el mismo vector
-	// operadores
+    //se llenan con lo que necesita cada uno en formato string para que todos puedan estar en el mismo vector
+    // operadores
 
 
     //llenar Arbol de Strings vacíos
@@ -78,8 +78,8 @@ vector<string> Arboles::crearArbol(int maxDepth){
 
     for(it = arbol.begin(); it != arbol.end(); it++){
         cout << *it << " ";
-	}
-	cout<<endl;
+    }
+    cout<<endl;
     cout<<"Max Depth: " << maxDepth <<endl;
 
     int prof = 1;
@@ -133,14 +133,14 @@ vector<string> Arboles::crearArbol(int maxDepth){
     //IMPRESIÓN
     //cout<<arbol.size();
 
-	return arbol;
+    return arbol;
 }
 
 // retorna un número entre 0 y largo
 int Arboles::randomPos(int largo){
 
-	int indice = rand() % largo;
-	return indice;
+    int indice = rand() % largo;
+    return indice;
 }
 
 // inserta el valor de insertado en las dos posiciones despues de posicion corriendo lo demás
@@ -267,6 +267,36 @@ vector<string> Arboles::mutar(vector<string>& original){
                 }
         }
     return original;
+}
+
+
+vector < vector<double> > Arboles::leer(){
+
+    ifstream in("wine.txt");
+    string bufferFila;
+    vector < vector<double> > matrix;
+
+    while (getline(in, bufferFila)) {
+        if(bufferFila.size() > 0) {
+            stringstream ss(bufferFila);
+            string bufferNumero;
+            vector<double> row;
+
+            while(getline(ss, bufferNumero, ',')) {
+                row.push_back(atof(bufferNumero.c_str()));
+            }
+            matrix.push_back(row);
+        }
+    }
+/**
+    for(int i = 0; i < matrix.size(); i++) {
+        for(int j = 0; j < matrix[i].size(); j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+**/
+    return matrix;
 }
 
 

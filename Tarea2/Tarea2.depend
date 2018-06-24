@@ -21,3 +21,28 @@
 	<stdio.h>
 	<iostream>
 
+1529799744 source:c:\users\ppppppp\desktop\gentica\tarea2\main.cpp
+	<iostream>
+	"Arboles.h"
+	<vector>
+	<iterator>
+	<fstream>
+	<string>
+	<sstream>
+	<algorithm>
+
+1529799744 c:\users\ppppppp\desktop\gentica\tarea2\include\arboles.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<vector>
+	<iterator>
+	<fstream>
+	<iostream>
+	<string>
+	<sstream>
+	<stack>
+
+1529799744 source:c:\users\ppppppp\desktop\gentica\tarea2\src\arboles.cpp
+	"Arboles.h"
+
