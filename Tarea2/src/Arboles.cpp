@@ -76,11 +76,11 @@ vector<string> Arboles::crearArbol(int maxDepth){
     arbol.at(1) = "1";
     arbol.at(2) = "1";
 
-    //for(it = arbol.begin(); it != arbol.end(); it++){
-      //  cout << *it << " ";
-    //}
-    //cout<<endl;
-    //cout<<"Max Depth: " << maxDepth <<endl;
+    for(it = arbol.begin(); it != arbol.end(); it++){
+        cout << *it << " ";
+    }
+    cout<<endl;
+    cout<<"Max Depth: " << maxDepth <<endl;
 
     int prof = 1;
 
@@ -95,14 +95,14 @@ vector<string> Arboles::crearArbol(int maxDepth){
         }
         else{
             int hojaOx = randomPos(2);  //si encuentra un número decide si es una hoja o una X
-      //      cout<<"Profundidad: " << prof <<endl;
+            cout<<"Profundidad: " << prof <<endl;
             if(hojaOx == 0 && prof < maxDepth){ //solo puede ser X si el arbol no va más profundo de lo que debe ser
                 string aux = arbol.at(i);
                 double num = atof (aux.c_str());
                 num ++;
-        //        cout<<"NUM: " << num <<endl;
+                cout<<"NUM: " << num <<endl;
                 prof = num;
-          //      cout<<"Profundidad: " << prof <<endl;
+                cout<<"Profundidad: " << prof <<endl;
                 std::ostringstream os;
                 os << num;
                 std::string str = os.str();
@@ -122,10 +122,10 @@ vector<string> Arboles::crearArbol(int maxDepth){
                 }
             }
         }
-        //for(it = arbol.begin(); it != arbol.end(); it++){
-            //cout << *it << " ";
-        //}
-       // cout<<endl;
+        for(it = arbol.begin(); it != arbol.end(); it++){
+            cout << *it << " ";
+        }
+        cout<<endl;
     }
 
     //arbol = insertarPos(arbol, 1, "420");
@@ -249,23 +249,35 @@ vector<string> Arboles::subArbol(vector<string>& original, int pos){
 }
 
 vector<string> Arboles::mutar(vector<string>& original){
-    string nueva;
-    int pos = 3;//randomPos(original.size());
-        if(esOper(original.at(pos))){
-            nueva = oper.at(randomPos(oper.size()));
-            original.at(pos) = nueva;
-        }
+    srand (time(NULL));
+
+    int posFin = original.size()-1;
+    bool encontrado = false;
+    while(posFin >= 0 && encontrado == false){
+        if (original.at(posFin) != "0")
+            encontrado = true;
         else{
-            int varonum = randomPos(2);
-                if (varonum == 0){
-                    nueva = term.at(randomPos(term.size()));
-                    original.at(pos) = nueva;
-                }
-                else{
-                    nueva = var.at(randomPos(var.size()));
-                    original.at(pos) = nueva;
-                }
+            posFin--;
         }
+    }
+
+    string nueva;
+    int pos = randomPos(posFin);
+    if(esOper(original.at(pos))){
+        nueva = oper.at(randomPos(oper.size()));
+        original.at(pos) = nueva;
+    }
+    else{
+        int varonum = randomPos(2);
+            if (varonum == 0){
+                nueva = term.at(randomPos(term.size()));
+                original.at(pos) = nueva;
+            }
+            else{
+                nueva = var.at(randomPos(var.size()));
+                original.at(pos) = nueva;
+            }
+    }
     return original;
 }
 
@@ -288,98 +300,160 @@ vector < vector<string> > Arboles::leer(){
             matrix.push_back(row);
         }
     }
-/**
+    /*
     for(int i = 0; i < matrix.size(); i++) {
         for(int j = 0; j < matrix[i].size(); j++) {
             cout << matrix[i][j] << " ";
         }
         cout << endl;
     }
-**/
+    */
     return matrix;
 }
 
 
 
 vector<string> Arboles::sustitucionVar(int fila, vector<string>& arbol, vector < vector<string> >& datos ){
-    int columnas = 12;
-    string str;
+     //int columnas = 12;
+     string str;
 
-     for(int i = 0; i < arbol.size(); i++){
+     for(unsigned i = 0; i < arbol.size(); i++){
 
         str = arbol.at(i);
 
         if(str == "v1")
-            arbol.at(i) = datos[fila][0];
-        else
-            if(str == "v2")
             arbol.at(i) = datos[fila][1];
         else
-            if(str == "v3")
+            if(str == "v2")
             arbol.at(i) = datos[fila][2];
         else
-            if(str == "v4")
+            if(str == "v3")
             arbol.at(i) = datos[fila][3];
         else
-            if(str == "v5")
+            if(str == "v4")
             arbol.at(i) = datos[fila][4];
         else
-            if(str == "v6")
+            if(str == "v5")
             arbol.at(i) = datos[fila][5];
         else
-            if(str == "v7")
+            if(str == "v6")
             arbol.at(i) = datos[fila][6];
         else
-            if(str == "v8")
+            if(str == "v7")
             arbol.at(i) = datos[fila][7];
         else
-            if(str == "v9")
+            if(str == "v8")
             arbol.at(i) = datos[fila][8];
         else
-            if(str == "v10")
+            if(str == "v9")
             arbol.at(i) = datos[fila][9];
         else
-            if(str == "v11")
+            if(str == "v10")
             arbol.at(i) = datos[fila][10];
         else
-            if(str == "v12")
+            if(str == "v11")
             arbol.at(i) = datos[fila][11];
+        else
+            if(str == "v12")
+            arbol.at(i) = datos[fila][12];
 
     } //fin del for
 
  return arbol;
 }
 
+void Arboles::cruzar (vector<string>& v1, vector<string>& v2){
+    srand (time(NULL));
+
+    //determinar tamaño real de ambos vectores, es decir, hasta donde están llenos
+    int posFin1 = v1.size()-1;
+    bool encontrado = false;
+    while(posFin1 >= 0 && encontrado == false){
+        if (v1.at(posFin1) != "0")
+            encontrado = true;
+        else{
+            posFin1--;
+        }
+    }
+    int posFin2 = v2.size()-1;
+    encontrado = false;
+    while(posFin2 >= 0 && encontrado == false){
+        if (v2.at(posFin2) != "0")
+            encontrado = true;
+        else{
+            posFin2--;
+        }
+    }
+    //posiciones aleatorias que no sean 0
+    int part1 = 0;
+    int part2 = 0;
+
+    while(part1 == 0 && part2 == 0){
+       part1 = randomPos(posFin1);
+       part2 = randomPos(posFin2);
+    }
+    //definir los sub-arboles
+    vector<string> subv1 = subArbol(v1, part1);
+    vector<string> subv2 = subArbol(v2, part2);
+
+    if (subv1.size() == subv2.size()){
+        for (unsigned i = 0; i < subv1.size(); i++){
+            v1.at(part1+i) = subv2.at(i);
+            v2.at(part2+i) = subv1.at(i);
+        }
+    }
+    else{
+        if(subv1.size() > subv2.size()){
+            int dif = subv1.size() - subv2.size();
+            int i = posFin1;
+            //hacer campo en v2
+            while(i != part1){
+                v2.at(i+dif) = v2.at(i);
+                i--;
+            }
+            //cerrar el campo en v1
+        }
+        else{
+            int dif = subv2.size() - subv1.size();
+        }
+    }
+}
+
+
+
 vector < vector<string> > Arboles :: crearGeneracion(){
 
     vector < vector<string> > matrix;
 
 
-    for (int i = 0; i < 50; i++){
+    for (unsigned i = 0; i < 50; i++){
         matrix.push_back(crearArbol(5));
     }
 
-    for (int i = 50; i < 149; i++){
+    for (unsigned i = 50; i < 149; i++){
          matrix.push_back(crearArbol(6));
     }
 
-    for (int i = 150; i < 400; i++){
+    for (unsigned i = 150; i < 400; i++){
          matrix.push_back(crearArbol(7));
     }
 
-     for (int i = 400; i < 501; i++){
+     for (unsigned i = 400; i < 501; i++){
          matrix.push_back(crearArbol(8));
     }
 
 
-      for(int i = 0; i < matrix.size(); i++) {
-        for(int j = 0; j < matrix[i].size(); j++) {
+      for(unsigned i = 0; i < matrix.size(); i++) {
+        for(unsigned j = 0; j < matrix[i].size(); j++) {
             cout << matrix[i][j] << " ";
         }
         cout << endl;
     }
-
-
+    return matrix;
 }
+
+
+
+
 
 

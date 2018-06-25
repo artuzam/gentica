@@ -33,6 +33,7 @@ class Arboles
         vector<string> mutar(vector<string>& original);
         vector < vector<string> > leer();  //lee archivo y devuelve matriz
         vector<string> sustitucionVar(int fila, vector<string>& arbol, vector<vector<string> >& datos); //sustituye los Var por los valores que se leen
+        void cruzar (vector<string>& v1, vector<string>& v2);
         vector < vector<string> > crearGeneracion();
 
 

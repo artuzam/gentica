@@ -13,26 +13,25 @@ using namespace std;
 
 int main()
 {
-     Arboles * objeto = new Arboles();
+    Arboles * objeto = new Arboles();
 
-     vector < vector<string> > temp = objeto->crearGeneracion();
+    //vector < vector<string> > temp = objeto->crearGeneracion();
 
-
-     /*
     //lee el archivo wine.txt y regresa vector
+    /*
     vector < vector<string> > temp = objeto->leer();
     vector<string> prueba = objeto->crearArbol(5);
 
     vector<string> subs = objeto->sustitucionVar(0, prueba, temp);
 
-     cout << "Sustituimos los var" << endl;
+    cout << "Sustituimos los var" << endl;
 
-    for(int i = 0; i < subs.size(); i++){
+    for(unsigned i = 0; i < subs.size(); i++){
         cout << subs.at(i) << " ";
     }
+    */
 
-**/
-/**
+/*
 
     //imprime matriz para ver si se metieron bien los valores
       for(int i = 0; i < temp.size(); i++) {
@@ -41,7 +40,7 @@ int main()
         }
         cout << endl;
     }
-**/
+*/
 
 
     //vector<string> prueba= objeto->crearArbol(5);
@@ -50,7 +49,7 @@ int main()
 
 
 
-    /*
+
 
     //pruebas de subArbol y solucionar
     vector<string> prueba;
@@ -65,7 +64,7 @@ int main()
     prueba.push_back("0");
 
     for (unsigned i = 0; i < prueba.size(); i++){
-        cout<<prueba.at(i);
+        cout<<prueba.at(i)<<" ";
     }
     cout<<endl;
 
@@ -74,17 +73,17 @@ int main()
 
     vector<string> sub = objeto->subArbol(prueba, 3);
     for (unsigned i = 0; i < sub.size(); i++){
-        cout<<sub.at(i);
+        cout<<sub.at(i)<<" ";
     }
     cout<<endl;
 
     prueba = objeto->mutar(prueba);
     for (unsigned i = 0; i < prueba.size(); i++){
-        cout<<prueba.at(i);
+        cout<<prueba.at(i)<<" ";
     }
     cout<<endl;
 
-**/
+
     return 0;
 }
 
