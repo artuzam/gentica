@@ -76,11 +76,11 @@ vector<string> Arboles::crearArbol(int maxDepth){
     arbol.at(1) = "1";
     arbol.at(2) = "1";
 
-    for(it = arbol.begin(); it != arbol.end(); it++){
-        cout << *it << " ";
-    }
-    cout<<endl;
-    cout<<"Max Depth: " << maxDepth <<endl;
+    //for(it = arbol.begin(); it != arbol.end(); it++){
+      //  cout << *it << " ";
+    //}
+    //cout<<endl;
+    //cout<<"Max Depth: " << maxDepth <<endl;
 
     int prof = 1;
 
@@ -95,14 +95,14 @@ vector<string> Arboles::crearArbol(int maxDepth){
         }
         else{
             int hojaOx = randomPos(2);  //si encuentra un número decide si es una hoja o una X
-            cout<<"Profundidad: " << prof <<endl;
+      //      cout<<"Profundidad: " << prof <<endl;
             if(hojaOx == 0 && prof < maxDepth){ //solo puede ser X si el arbol no va más profundo de lo que debe ser
                 string aux = arbol.at(i);
                 double num = atof (aux.c_str());
                 num ++;
-                cout<<"NUM: " << num <<endl;
+        //        cout<<"NUM: " << num <<endl;
                 prof = num;
-                cout<<"Profundidad: " << prof <<endl;
+          //      cout<<"Profundidad: " << prof <<endl;
                 std::ostringstream os;
                 os << num;
                 std::string str = os.str();
@@ -122,10 +122,10 @@ vector<string> Arboles::crearArbol(int maxDepth){
                 }
             }
         }
-        for(it = arbol.begin(); it != arbol.end(); it++){
-            cout << *it << " ";
-        }
-        cout<<endl;
+        //for(it = arbol.begin(); it != arbol.end(); it++){
+            //cout << *it << " ";
+        //}
+       // cout<<endl;
     }
 
     //arbol = insertarPos(arbol, 1, "420");
@@ -350,10 +350,36 @@ vector<string> Arboles::sustitucionVar(int fila, vector<string>& arbol, vector <
  return arbol;
 }
 
+vector < vector<string> > Arboles :: crearGeneracion(){
+
+    vector < vector<string> > matrix;
 
 
+    for (int i = 0; i < 50; i++){
+        matrix.push_back(crearArbol(5));
+    }
+
+    for (int i = 50; i < 149; i++){
+         matrix.push_back(crearArbol(6));
+    }
+
+    for (int i = 150; i < 400; i++){
+         matrix.push_back(crearArbol(7));
+    }
+
+     for (int i = 400; i < 501; i++){
+         matrix.push_back(crearArbol(8));
+    }
 
 
+      for(int i = 0; i < matrix.size(); i++) {
+        for(int j = 0; j < matrix[i].size(); j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
 
+
+}
 
 

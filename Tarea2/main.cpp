@@ -15,6 +15,10 @@ int main()
 {
      Arboles * objeto = new Arboles();
 
+     vector < vector<string> > temp = objeto->crearGeneracion();
+
+
+     /*
     //lee el archivo wine.txt y regresa vector
     vector < vector<string> > temp = objeto->leer();
     vector<string> prueba = objeto->crearArbol(5);
@@ -27,7 +31,7 @@ int main()
         cout << subs.at(i) << " ";
     }
 
-
+**/
 /**
 
     //imprime matriz para ver si se metieron bien los valores
