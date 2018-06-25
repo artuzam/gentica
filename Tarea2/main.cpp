@@ -13,6 +13,8 @@ using namespace std;
 
 int main()
 {
+    srand(time(NULL));
+
     Arboles * objeto = new Arboles();
 
     //vector < vector<string> > temp = objeto->crearGeneracion();
@@ -20,7 +22,6 @@ int main()
     //lee el archivo wine.txt y regresa vector
     /*
     vector < vector<string> > temp = objeto->leer();
-    vector<string> prueba = objeto->crearArbol(5);
 
     vector<string> subs = objeto->sustitucionVar(0, prueba, temp);
 
@@ -63,26 +64,39 @@ int main()
     prueba.push_back("0");
     prueba.push_back("0");
 
+    vector<string> prueba2;
+    prueba2.push_back("+");
+    prueba2.push_back("/");
+    prueba2.push_back("7");
+    prueba2.push_back("5");
+    prueba2.push_back("-3");
+    prueba2.push_back("0");
+    prueba2.push_back("0");
+    prueba2.push_back("0");
+    prueba2.push_back("0");
+
     for (unsigned i = 0; i < prueba.size(); i++){
         cout<<prueba.at(i)<<" ";
     }
     cout<<endl;
 
-    double res = objeto->solucionar(prueba);
-    cout<<"Resultado:"<<res<<endl;
-
-    vector<string> sub = objeto->subArbol(prueba, 3);
-    for (unsigned i = 0; i < sub.size(); i++){
-        cout<<sub.at(i)<<" ";
+    for (unsigned i = 0; i < prueba2.size(); i++){
+        cout<<prueba2.at(i)<<" ";
     }
     cout<<endl;
 
-    prueba = objeto->mutar(prueba);
+    objeto->cruzar(prueba, prueba2);
+
+    cout<<"Cruzados"<<endl;
     for (unsigned i = 0; i < prueba.size(); i++){
         cout<<prueba.at(i)<<" ";
     }
     cout<<endl;
 
+    for (unsigned i = 0; i < prueba2.size(); i++){
+        cout<<prueba2.at(i)<<" ";
+    }
+    cout<<endl;
 
     return 0;
 }
