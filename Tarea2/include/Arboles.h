@@ -13,6 +13,7 @@
 #include <stack>
 #include <algorithm>
 #include <map>
+#include <math.h>
 
 using namespace std;
 
@@ -32,9 +33,11 @@ class Arboles
         vector<string> subArbol(vector<string>& original, int pos);
         vector<string> mutar(vector<string>& original);
         vector < vector<string> > leer();  //lee archivo y devuelve matriz
-        vector<string> sustitucionVar(int fila, vector<string>& arbol, vector<vector<string> >& datos); //sustituye los Var por los valores que se leen
+        vector<string> sustitucionVar(unsigned int fila, vector<string>& arbol, vector<vector<string> >& datos); //sustituye los Var por los valores que se leen
         void cruzar (vector<string>& v1, vector<string>& v2);
         vector < vector<string> > crearGeneracion();
+        vector <string> evaluar(vector < vector<string> >& bosque, vector<vector<string> >& datos );
+        double sigmoid (double x);
 
 
     protected:

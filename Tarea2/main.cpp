@@ -17,6 +17,10 @@ int main()
 
     Arboles * objeto = new Arboles();
 
+    vector<vector<string> > datos = objeto->leer();
+    vector < vector<string> > bosque = objeto->crearGeneracion();
+    vector<string> resultado = objeto->evaluar(bosque, datos);
+
     //vector < vector<string> > temp = objeto->crearGeneracion();
 
     //lee el archivo wine.txt y regresa vector
@@ -49,7 +53,7 @@ int main()
 
 
 
-
+/*
 
 
     //pruebas de subArbol y solucionar
@@ -97,6 +101,8 @@ int main()
         cout<<prueba2.at(i)<<" ";
     }
     cout<<endl;
+
+    **/
 
     return 0;
 }

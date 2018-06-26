@@ -1,4 +1,4 @@
-#include "Arboles.h"
+    #include "Arboles.h"
 
 
 using namespace std;
@@ -292,7 +292,7 @@ vector < vector<string> > Arboles::leer(){
 }
 
 
-vector<string> Arboles::sustitucionVar(int fila, vector<string>& arbol, vector < vector<string> >& datos ){
+vector<string> Arboles::sustitucionVar(unsigned int fila, vector<string>& arbol, vector < vector<string> >& datos ){
      //int columnas = 12;
      string str;
 
@@ -400,8 +400,9 @@ void Arboles::cruzar (vector<string>& v1, vector<string>& v2){
         if(subv1.size() > subv2.size()){
             cout<<"V1 mayor"<<endl;
             int dif = subv1.size() - subv2.size();
-            int i = posFin1;
-            int j = part2 + subv1.size();
+            int i = posFin2;
+            int j = part2 + subv1.size(); //lo que se va a agregar a v2
+
             //hacer campo en v2
             while(i >= part1){
                 cout << "Entra"<<endl;
@@ -493,6 +494,71 @@ vector < vector<string> > Arboles :: crearGeneracion(){
     }
 
     return matrix;
+}
+
+
+vector <string> Arboles :: evaluar(vector < vector<string> >& bosque, vector<vector<string> >& datos ){
+
+    vector < vector<string> > matrix;
+
+    //se copia bosque a matrix
+    for (unsigned int i = 0; i < matrix.size(); i++) {
+            for (unsigned int j = 0; j < matrix[i].size(); j++)
+                matrix[i][j] = bosque[i][j];
+        }
+
+
+        //va a recorrer el bosque
+    for (unsigned int i = 0; i < matrix.size(); i++) {
+            for (unsigned int j = 0; j < matrix[i].size(); j++) {
+
+        vector<double> acumulador;
+        double total;
+
+               //se sustituye las Variables
+                for(unsigned int k = 0; k < datos.size(); k++){
+                        //revisar esta linea de abajo
+                    vector<string> temp = sustitucionVar(k,matrix[j],datos);    // en temp se guarda el arbol con las variables reales
+                    double solucion = solucionar(temp);    //se soluciona el arbol
+                    double salida = 8 * sigmoid(solucion/10);
+
+                    if(0 <= salida <= 2)
+                        salida = 1;
+                        else if(3 <= salida <= 5)
+                            salida = 2;
+                            else if(6 <= salida <= 8)
+                                salida = 3;
+
+                    double v1 = atof(temp[0].c_str());
+                    double fitness = pow(salida - v1,2);
+
+                    acumulador.push_back(fitness);
+
+                }
+
+                //recorre el vector de fitness y suma todas las entradas y las guarda en total
+                for(int k = 0; k < acumulador.size(); k++){
+                    total += acumulador[k];
+                }
+
+                total /= 178;
+            }
+    }
+
+}
+
+double Arboles :: sigmoid(double x)
+{
+     double exp_value;
+     double return_value;
+
+     /*** Exponential calculation ***/
+     exp_value = exp((double) -x);
+
+     /*** Final sigmoid value ***/
+     return_value = 1 / (1 + exp_value);
+
+     return return_value;
 }
 
 
