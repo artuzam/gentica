@@ -292,7 +292,6 @@ vector < vector<string> > Arboles::leer(){
 }
 
 
-
 vector<string> Arboles::sustitucionVar(int fila, vector<string>& arbol, vector < vector<string> >& datos ){
      //int columnas = 12;
      string str;
@@ -391,6 +390,7 @@ void Arboles::cruzar (vector<string>& v1, vector<string>& v2){
     cout<<endl;
 
     if (subv1.size() == subv2.size()){
+        cout<<"Iguales"<<endl;
         for (unsigned i = 0; i < subv1.size(); i++){
             v1.at(part1+i) = subv2.at(i);
             v2.at(part2+i) = subv1.at(i);
@@ -398,34 +398,61 @@ void Arboles::cruzar (vector<string>& v1, vector<string>& v2){
     }
     else{
         if(subv1.size() > subv2.size()){
+            cout<<"V1 mayor"<<endl;
             int dif = subv1.size() - subv2.size();
             int i = posFin1;
-            int j = part2 + dif;
+            int j = part2 + subv1.size();
             //hacer campo en v2
-            while(i != part1){
+            while(i >= part1){
+                cout << "Entra"<<endl;
                 v2.at(i+dif) = v2.at(i);
                 i--;
             }
             //cerrar el campo en v1
-            while(j != posFin1){
-                v1.at(i-dif) = v1.at(i);
+            while(j >= part2){
+                cout << "Entra 2"<<endl;
+                v1.at(j-dif) = v1.at(j);
+                j--;
+            }
+            for (int k = posFin1; k >= (posFin1-dif); k--){
+                v1.at(k) = "0";
             }
         }
         else{
-            int dif = subv1.size() - subv2.size();
+            cout<<"V2 mayor"<<endl;
+            int dif = subv2.size() - subv1.size();
             int i = posFin2;
-            int j = part1 + dif;
+            int j = part1 + subv2.size();
             //hacer campo en v1
-            while(i != part2){
+            while(i >= part2){
+                cout << "Entra"<<endl;
                 v1.at(i+dif) = v1.at(i);
+                v1.at(i) = "0";
                 i--;
             }
             //cerrar el campo en v2
-            while(j != posFin2){
-                v2.at(i-dif) = v2.at(i);
+            while(j >= part2){
+                cout << "Entra 2"<<endl;
+                v2.at(j-dif) = v2.at(j);
+                v2.at(i) = "0";
                 j--;
             }
+
         }
+
+        //impresión de prueba
+        cout<<"Impresion de prueba"<<endl;
+        for (unsigned i = 0; i < v1.size(); i++){
+            cout<<v1.at(i)<<" ";
+        }
+        cout<<endl;
+
+        for (unsigned i = 0; i < v2.size(); i++){
+            cout<<v2.at(i)<<" ";
+        }
+        cout<<endl;
+        //fin impresión de prueba
+
         for (unsigned i = 0; i < subv2.size(); i++){
             v1.at(part1+i) = subv2.at(i);
         }
